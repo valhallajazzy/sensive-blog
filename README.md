@@ -45,4 +45,4 @@ python3 manage.py runserver
 
 - В уроке "Оптимизируем сайт" курса [Знакомство с Django: ORM](https://dvmn.org/modules/django-orm/).
 - В туториале [Превью для ImageField в админке](https://devman.org/encyclopedia/django/how-to-setup-image-preview/)
-# sensive-blog
+

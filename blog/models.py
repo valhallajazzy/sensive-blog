@@ -5,9 +5,13 @@ from django.contrib.auth.models import User
 
 
 class PostQuerySet(models.QuerySet):
-    def year(self, year):
-        posts_at_year = self.filter(published_at__year=year)
-        return posts_at_year
+    def popular(self):
+        popular_posts = self.annotate(count_likes=Count("likes")).order_by('-count_likes')
+        return popular_posts
+
+    def fetch_with_comments_count(self):
+        comments_count = self.annotate(count_comments=Count("comments"))
+        return comments_count
 
 
 class TagQuerySet(models.QuerySet):
@@ -38,6 +42,7 @@ class Post(models.Model):
         related_name='posts',
         verbose_name='Теги')
     objects = PostQuerySet.as_manager()
+
     def __str__(self):
         return self.title
 
